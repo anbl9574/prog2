@@ -34,3 +34,12 @@ extern "C"{
 			}
 		}
 	}
+
+
+	int fib_cpp(int n) {
+    if (n <= 1) {
+        return n;
+    } else {
+        return fib_cpp(n - 1) + fib_cpp(n - 2);
+    }
+}
