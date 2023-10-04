@@ -1,0 +1,58 @@
+from time import perf_counter as pc
+from time import sleep as pause
+import concurrent.futures as future
+
+
+
+with future.ProcessPoolExecutor() as ex:
+    p1 = ex.submit(some_method, some_arg, some_other_arg, ...) # Starts first
+#process,→
+    p2 = ex.submit(some_method, some_arg, some_other_arg, ...) # Starts second
+#process,→
+    r1 = p1.result() # Program waits until p1 is complete before assigning r2
+    r2 = p2.result()
+ 
+    print("all done") # Will be printed once all processes are completed
+
+
+
+def runner(n):
+  print(f"Performing costly function {n}")
+  pause(n)
+  return f"Function {n} has completed"
+
+if __name__ == "__main__":
+  start = pc()
+
+  with future.ProcessPoolExecutor() as ex:
+    p = [5, 4, 3, 2, 1]
+  results = ex.map(runner, p)
+ 
+  for r in results:
+    print(r)
+ 
+  end = pc()
+  print(f"Process took {round(end-start, 2)} seconds")
+
+
+
+
+def greaterThanTwo(num):
+    if(num <= 1):
+        return True
+    else:
+        return False
+
+def hypersphere(n,d):
+    
+    random_values=[np.random.uniform(-1, 1, d) for i in range(n)]
+    f=lambda x: x**2
+    values=map(f,random_values)
+    filterd=list(filter(greaterThanTwo, map(np.sum, values)))
+
+
+    n_c = np.array(filterd).size
+    estVol = 2**d*len(filterd)/n
+    realVol = (math.pi**(d/2)/(math.gamma(d/2+1)))
+
+    return estVol, realVol, filterd
