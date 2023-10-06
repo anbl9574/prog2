@@ -1,4 +1,3 @@
-
 #!/usr/bin/env python3
 
 from person import Person
@@ -33,17 +32,18 @@ def main():
 if __name__ == '__main__':
 	main()
 	timelist=[]
-
-	vector=[31,32,33,34,35,36,37,38,39,40,41,42,43,44,45]
+	vector=[31,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45]
 	for i in vector:
 		t1_start = perf_counter() 
-		fibresult=fib_numba(i)
+		fibresult=fib_py(i)
 		t1_stop = perf_counter()
 		timelist.append(t1_stop-t1_start)
 
 	print("Elapsed time during the whole program in seconds:",t1_stop-t1_start)
-	print(timelist)#!/usr/bin/env python3
+	print(timelist)
 	plt.plot(vector,timelist)
 	plt.show()
-	plt.savefig('plotesting..png')
+
+# Save the plot to your desktop
+	plt.savefig('/Users/anton/Downloads/plot.png')
 

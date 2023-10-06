@@ -42,4 +42,6 @@ extern "C"{
     } else {
         return fib_cpp(n - 1) + fib_cpp(n - 2);
     }
-}
+<<<<<<< HEAD
+
+>>>>>>> 838f0d86d851210d7c03af4886433d2c1a22e962
