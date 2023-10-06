@@ -80,4 +80,14 @@ if __name__ == '__main__':
 	plt.show()
 	plt.savefig('testingpyb.png')
 
+#See that is a huge difference between ordinary python and c++ and numba.
+# If you compare number and c++ c++ is still much faster. 
 
+#fib(47)numba=2971215073
+# fib(47) = -1323752223 in c++
+
+#C++ returns a negative number because the data type's memory size (e.g., "int")
+# can only store a limited range of values.
+# When the value exceeds this limit, it "overflows" into negative territory.
+# For example, with a 32-bit "int," values greater than 2^31 become negative.
+# This is why we get a negative result for values like 2^31 - fib(47).
