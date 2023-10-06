@@ -1,47 +1,59 @@
-#include <cstdlib>
-// Person class 
+// Person class
+class Person {
+public:
+    Person(int);
+    int get();
+    void set(int);
+    int fib();
 
-class Person{
-	public:
-		Person(int);
-		int get();
-		void set(int);
-	private:
-		int age;
-	};
- 
-Person::Person(int n){
-	age = n;
-	}
- 
-int Person::get(){
-	return age;
-	}
- 
-void Person::set(int n){
-	age = n;
-	}
+private:
+    int age;
+    int fibHelp(int);
+};
 
+Person::Person(int n) {
+    age = n;
+}
 
-extern "C"{
-	Person* Person_new(int n) {return new Person(n);}
-	int Person_get(Person* person) {return person->get();}
-	void Person_set(Person* person, int n) {person->set(n);}
-	void Person_delete(Person* person){
-		if (person){
-			delete person;
-			person = nullptr;
-			}
-		}
-	}
+int Person::get() {
+    return age;
+}
 
-
-	int fib_cpp(int n) {
+int Person::fibHelp(int n) {
     if (n <= 1) {
         return n;
-    } else {
-        return fib_cpp(n - 1) + fib_cpp(n - 2);
     }
-<<<<<<< HEAD
+    return fibHelp(n - 1) + fibHelp(n - 2);
+}
 
->>>>>>> 838f0d86d851210d7c03af4886433d2c1a22e962
+void Person::set(int n) {
+    age = n;
+}
+
+int Person::fib() {
+    return fibHelp(age);
+}
+
+extern "C" {
+    Person* Person_new(int n) {
+        return new Person(n);
+    }
+
+    int Person_get(Person* person) {
+        return person->get();
+    }
+
+    void Person_set(Person* person, int n) {
+        person->set(n);
+    }
+
+    int Person_fib(Person* person) {
+        return person->fib();
+    }
+
+    void Person_delete(Person* person) {
+        if (person) {
+            delete person;
+        }
+    }
+}
